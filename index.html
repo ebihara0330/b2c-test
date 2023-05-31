@@ -107,6 +107,18 @@
   <button id="logoutBtn">Logout</button>
 
   <script>
+    fetch('/.auth/me')
+    .then(response => response.json())
+    .then(data => {
+        // data[0]は最初の認証プロバイダーの情報を含みます
+        // 複数の認証プロバイダーがある場合、適切なものを選択する必要があります
+        const accessToken = data[0].access_token;
+　　　　　alert(accessToken);
+        // ここでアクセストークンを使用します
+        console.log(accessToken);
+    })
+    .catch(error => console.error('Error:', error));
+    
     document.getElementById('logoutBtn').addEventListener('click', function() {
       logout();
     });
