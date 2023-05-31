@@ -104,20 +104,16 @@
       </div>
       <!-- /.container-fluid -->
   
-        <button id="logoutBtn">Logout</button>
-  
+  <button id="logoutBtn">Logout</button>
+
   <script>
     document.getElementById('logoutBtn').addEventListener('click', function() {
       logout();
     });
 
     function logout() {
-        // Call the logout endpoint
-        fetch('/.auth/logout')
-            .then(() => {
-                // Redirect to login page after successful logout
-                window.location.href = "/.auth/login/b2c";
-            });
+        // Redirect to the logout route
+        window.location.href = "/logout";
     }
   </script>
       
