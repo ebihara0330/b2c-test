@@ -23,11 +23,16 @@
   },
   "routes": [
     {
+      "route": "/login",
+      "redirect": "/.auth/login/b2c"
+    },
+    {
       "route": "/logout",
       "redirect": "/.auth/logout"
     },
     {
       "route": "/*",
+      "methods": ["GET"],
       "allowedRoles": ["authenticated"]
     }
   ],

@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - main 
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self  
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: "/" 
+    api_location: "api" 
+    output_location: ""  
+    azure_static_web_apps_api_token: $(deployment_token)
+    
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'connection'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az storage blob download --account-name orprejpstadata02 --container-name mdpfexportal --name MDPFExPortal/test.txt --file ./test.txt --connection-string "$(storageconnectionstring)"
+      ls -l ./  # list the contents of the current directory
+      cat ./test.txt  # display the contents of the downloaded file
