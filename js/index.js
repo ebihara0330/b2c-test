@@ -26,15 +26,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 	// メニュー開閉時の高さ調整リスナー設定
 	addLiHoverListener();
-
-	// ログアウト未完了時のリダイレクト処理
-	fetch("/.auth/me")
-	.then(response => response.json())
-	.then(data => {
-		if (!data.clientPrincipal) {
-			window.location.href = "/login";
-		}
-	})
 });
 
 /*
